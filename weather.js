@@ -4,11 +4,21 @@ var longitude = 200;
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
+
+var cwb_path = [];
+for (var key in MOS2_1024N) {
+    cwb_path.push(key);
+}
+//alert(cwb_path);
+
 var img1 = [];
-img1[0] = loadImage('http://www.cwb.gov.tw/V7/observe/radar/Data/MOS2_1024N/2014-07-09_1424.2MOS3NC.jpg', main);
-img1[1] = loadImage('http://www.cwb.gov.tw/V7/observe/radar/Data/MOS2_1024N/2014-07-09_1430.2MOS3NC.jpg', main);
-img1[2] = loadImage('http://www.cwb.gov.tw/V7/observe/radar/Data/MOS2_1024N/2014-07-09_1436.2MOS3NC.jpg', main);
+img1[0] = loadImage('http://www.cwb.gov.tw'+cwb_path[2], main);
+img1[1] = loadImage('http://www.cwb.gov.tw'+cwb_path[1], main);
+img1[2] = loadImage('http://www.cwb.gov.tw'+cwb_path[0], main);
 var img2 = loadImage('gps.png', main);
+
+
+
 
 var imagesLoaded = 0;
 var counter = 0;
@@ -65,7 +75,7 @@ function drawScreen() {
     
     var d = new Date();
     var t = d.toLocaleTimeString();
-    document.getElementById("demo").innerHTML = t;
+    document.getElementById("time").innerHTML = t;
 }
 function imageLoop() {
     //window.setTimeout(function(){imageLoop()}, 1000000000);

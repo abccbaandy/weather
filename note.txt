@@ -2,15 +2,16 @@
 http://www.cwb.gov.tw/V7/observe/radar/index_N.htm#
 http://www.cwb.gov.tw/V7/observe/radar/Data/MOS2_1024N/2014-07-09_1424.2MOS3NC.jpg
 
+http://www.cwb.gov.tw/V7/js/MOS2_1024N.js
+
+
 
 opendata
 http://opendata.cwb.gov.tw/observe/o_index.htm
 http://opendata.cwb.gov.tw/observe/dataset/A0011-002.htm
-http://opendata.cwb.gov.tw/opendata/DIV4/O-A0011-002.jpg
-
-
 
 http://opendata.cwb.gov.tw/opendata/DIV4/O-A0011-002.xml
+http://opendata.cwb.gov.tw/opendata/DIV4/O-A0011-002.jpg
 經度範圍
 120.0 - 121.998
 
