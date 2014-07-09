@@ -1,24 +1,25 @@
-var latitude = 100;
-var longitude = 300;
+var latitude = 23;
+var longitude = 200;
 
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
 var img1 = [];
-img1[0] = loadImage('pic1.jpg', main);
-img1[1] = loadImage('pic2.jpg', main);
-img1[2] = loadImage('pic3.jpg', main);
+img1[0] = loadImage('http://www.cwb.gov.tw/V7/observe/radar/Data/MOS2_1024N/2014-07-09_1424.2MOS3NC.jpg', main);
+img1[1] = loadImage('http://www.cwb.gov.tw/V7/observe/radar/Data/MOS2_1024N/2014-07-09_1430.2MOS3NC.jpg', main);
+img1[2] = loadImage('http://www.cwb.gov.tw/V7/observe/radar/Data/MOS2_1024N/2014-07-09_1436.2MOS3NC.jpg', main);
 var img2 = loadImage('gps.png', main);
 
 var imagesLoaded = 0;
 var counter = 0;
 navigator.geolocation.getCurrentPosition(GetLocation);
 function GetLocation(location) {
-    //alert(location.coords.latitude);
-    //alert(location.coords.longitude);
+    alert(location.coords.latitude);
+    alert(location.coords.longitude);
     //alert(location.coords.accuracy);
-	latitude = location.coords.latitude+24;
-	longitude = location.coords.longitude+240;
+	latitude = 476-(location.coords.latitude-23.474)/(25.47-23.474)*476;
+	//longitude = location.coords.longitude+240;
+	longitude = (location.coords.longitude-120)/(121.998-120)*476;
 	//alert("GetLocation  "+latitude);
 	ctx.drawImage(img2, longitude, latitude);
 }
@@ -44,7 +45,7 @@ function main() {
     //window.setTimeout(imageLoop, 1000);
     //ctx.drawImage(img2, longitude, latitude);
     if(imagesLoaded == 4) {
-        alert("Image is loaded");
+        //alert("Image is loaded");
         //setInterval(drawScreen(), 1000);
     }
     //imageLoop();
@@ -59,11 +60,15 @@ function drawScreen() {
     else
         counter++;
         
-    //ctx.globalAlpha = 1;
+    //ctx.globalAlpha = 0.7;
     ctx.drawImage(img2, longitude, latitude);
+    
+    var d = new Date();
+    var t = d.toLocaleTimeString();
+    document.getElementById("demo").innerHTML = t;
 }
 function imageLoop() {
     //window.setTimeout(function(){imageLoop()}, 1000000000);
     //drawScreen();
-    setInterval(drawScreen(), 10000);
+    setInterval(function(){drawScreen()}, 1000);
 }
