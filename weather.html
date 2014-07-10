@@ -10,13 +10,12 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="jquery.selectboxes.js"></script>
     <body>
-        <canvas width="512" height="512" id="canvas"></canvas>
-        <button onclick="imageLoop()">Click me</button>
-        <p id="time"></p>
-        <p id="cwb_name"></p>
+        <canvas class="col-md-4" width="512" height="512" id="canvas"></canvas>
+        <!--<button onclick="imageLoop()">Click me</button>-->
         <div class="col-md-4">
-            <select id="sel" class="form-control" onchange="selchange();">
+            <select multiple size=30 id="sel" class="form-control" onchange="selchange();">
             </select>
+            <button class="btn btn-primary" onclick="getSelectValues()">Start Loop</button>
         </div>
     </body>
 	<script type="text/JavaScript" src="weather.js"></script> 
