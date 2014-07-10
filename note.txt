@@ -19,3 +19,7 @@ http://opendata.cwb.gov.tw/opendata/DIV4/O-A0011-002.jpg
 23.474 - 25.47
 
 476 X 476
+
+
+select的資料是用jquery.selectboxes.js的addoption帶進來的
+改變會觸發LoopRadar.js裡的PrepareLoop

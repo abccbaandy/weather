@@ -1,3 +1,4 @@
+$('.dropdown-toggle').dropdown();
 var latitude = 23;
 var longitude = 200;
 
@@ -6,10 +7,18 @@ var ctx = canvas.getContext("2d");
 
 
 var cwb_path = [];
+var cwb_name = [];
+$("#sel").addOption(MOS2_1024N, false);
 for (var key in MOS2_1024N) {
     cwb_path.push(key);
+    cwb_name.push(MOS2_1024N[key]);
 }
 //alert(cwb_path);
+for (i=0;i<cwb_name.length;i++)
+{
+    //document.write(cwb_name[i] + "<br >");
+    document.getElementById("cwb_name").innerHTML = cwb_name[i];
+}
 
 var img1 = [];
 img1[0] = loadImage('http://www.cwb.gov.tw'+cwb_path[2], main);
@@ -81,4 +90,14 @@ function imageLoop() {
     //window.setTimeout(function(){imageLoop()}, 1000000000);
     //drawScreen();
     setInterval(function(){drawScreen()}, 1000);
+}
+function selchange() {
+    //alert(document.getElementById("sel").selectedIndex);
+    img3 = loadImage('http://www.cwb.gov.tw'+cwb_path[document.getElementById("sel").selectedIndex], selchangedraw);
+    //ctx.drawImage(img3, 0, 0);
+    //ctx.drawImage(img2, longitude, latitude);
+}
+function selchangedraw() {
+    ctx.drawImage(img3, 0, 0);
+    ctx.drawImage(img2, longitude, latitude);
 }
