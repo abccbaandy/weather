@@ -1,0 +1,25 @@
+北台灣雷達回波
+http://www.cwb.gov.tw/V7/observe/radar/index_N.htm#
+http://www.cwb.gov.tw/V7/observe/radar/Data/MOS2_1024N/2014-07-09_1424.2MOS3NC.jpg
+
+http://www.cwb.gov.tw/V7/js/MOS2_1024N.js
+
+
+
+opendata
+http://opendata.cwb.gov.tw/observe/o_index.htm
+http://opendata.cwb.gov.tw/observe/dataset/A0011-002.htm
+
+http://opendata.cwb.gov.tw/opendata/DIV4/O-A0011-002.xml
+http://opendata.cwb.gov.tw/opendata/DIV4/O-A0011-002.jpg
+經度範圍
+120.0 - 121.998
+
+緯度範圍
+23.474 - 25.47
+
+476 X 476
+
+
+select的資料是用jquery.selectboxes.js的addoption帶進來的
+改變會觸發LoopRadar.js裡的PrepareLoop
