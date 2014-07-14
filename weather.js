@@ -1,5 +1,5 @@
 var weatherImg;
-var gpsImg = loadImage('gps.png', main);
+var gpsImg = loadImage('circle16.png', main);
 
 //dummy geo data
 var latitude = 23;
@@ -64,8 +64,13 @@ function selchange() {
 }
 
 function drawImg() {
+    //dirty way to clear
+    //canvas.width = canvas.width;
+    //good way to clear
+    ctx.clearRect(0,0,512,512);
+    ctx.globalAlpha = 0.5;
     ctx.drawImage(weatherImg, 0, 0);
-    //ctx.globalAlpha = 0.7;
+    ctx.globalAlpha = 1.0;
     ctx.drawImage(gpsImg, longitude, latitude);
 }
 
