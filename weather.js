@@ -72,9 +72,9 @@ function drawImg() {
     //canvas.width = canvas.width;
     //good way to clear
     ctx.clearRect(0,0,canvasSize,canvasSize);
-    ctx.globalAlpha = 0.5;
+    //ctx.globalAlpha = 0.7;
     ctx.drawImage(weatherImg, 0, 0);
-    ctx.globalAlpha = 1.0;
+    //ctx.globalAlpha = 1.0;
     ctx.drawImage(gpsImg, longitude, latitude);
 }
 
