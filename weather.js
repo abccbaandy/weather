@@ -6,7 +6,10 @@ var latitude = 23;
 var longitude = 200;
 
 var canvas = document.getElementById("canvas");
+canvasSize = 476;
 var ctx = canvas.getContext("2d");
+ctx.width  = canvasSize;
+ctx.height = canvasSize;
 
 var cwb_path = [];
 //not use anymore
@@ -33,8 +36,8 @@ function GetLocation(location) {
     alert(location.coords.accuracy);
     
     //(x-min)/(max-min)=(xImg-minImg)/(maxImg-minImg)
-	latitude = 476-(location.coords.latitude-23.474)/(25.47-23.474)*476;
-	longitude = (location.coords.longitude-120)/(121.998-120)*476;
+	latitude = canvasSize-(location.coords.latitude-23.474)/(25.47-23.474)*canvasSize;
+	longitude = (location.coords.longitude-120)/(121.998-120)*canvasSize;
 	//alert("GetLocation  "+latitude);
 	
 	//ctx.globalAlpha = 0.7;
@@ -53,6 +56,8 @@ function loadImage(src, onload) {
 
 function main() {
     //do nothing
+    document.getElementById("sel").selectedIndex = 0;
+    selchange();
 }
 
 //select change listener
@@ -67,7 +72,7 @@ function drawImg() {
     //dirty way to clear
     //canvas.width = canvas.width;
     //good way to clear
-    ctx.clearRect(0,0,512,512);
+    ctx.clearRect(0,0,canvasSize,canvasSize);
     ctx.globalAlpha = 0.5;
     ctx.drawImage(weatherImg, 0, 0);
     ctx.globalAlpha = 1.0;
@@ -96,6 +101,25 @@ function startLoop() {
             selectedImg.push(document.getElementById("sel").options[ i ].index);
     }
     //alert(selectedImg);
+    //start loop
+    refreshIntervalId = setInterval(function(){drawLoopImg()}, 1000);
+}
+function startLoopN(t) {
+    //need fix this overindex bug
+    var limit = t*10+1;
+    var optionLimit = document.getElementById("sel").options.length-document.getElementById("sel").selectedIndex;
+    if(limit > optionLimit)
+        limit = optionLimit;
+    
+    //stop current loop
+    clearInterval(refreshIntervalId);
+    //reset loop counter
+    selectedImgIndex = 0;
+    //re-new array
+    selectedImg = [];
+    for (var i = 0; i < limit; i++) {
+        selectedImg.push(document.getElementById("sel").options[ document.getElementById("sel").selectedIndex+i ].index);
+    }
     //start loop
     refreshIntervalId = setInterval(function(){drawLoopImg()}, 1000);
 }
