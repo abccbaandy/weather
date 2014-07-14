@@ -4,8 +4,10 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <!-- Optional theme -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
     <script type="text/JavaScript" src="http://www.cwb.gov.tw/V7/js/MOS2_1024N.js"></script>
     <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="jquery.selectboxes.js"></script>
@@ -17,7 +19,9 @@
             <button class="btn btn-default" onclick="startLoopN(2)">2 Hour</button>
             <button class="btn btn-default" onclick="startLoopN(3)">3 Hour</button>
             <button class="btn btn-default" onclick="startLoopN(4)">4 Hour</button>
+            <div id="slider"></div>
         </div>
+        <script type="text/JavaScript">$( "#slider" ).slider({change: function( event, ui ) {sliderChange()}});</script>
         <script type="text/JavaScript" src="weather.js"></script> 
     </body>
 </html>

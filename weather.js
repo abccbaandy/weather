@@ -66,15 +66,15 @@ function selchange() {
     //alert(document.getElementById("sel").selectedIndex);
     weatherImg = loadImage('http://www.cwb.gov.tw'+cwb_path[document.getElementById("sel").selectedIndex], drawImg);
 }
-
+var alpha = 1.0;
 function drawImg() {
     //dirty way to clear
     //canvas.width = canvas.width;
     //good way to clear
     ctx.clearRect(0,0,canvasSize,canvasSize);
-    //ctx.globalAlpha = 0.7;
+    ctx.globalAlpha = alpha;
     ctx.drawImage(weatherImg, 0, 0);
-    //ctx.globalAlpha = 1.0;
+    ctx.globalAlpha = 1.0;
     ctx.drawImage(gpsImg, longitude, latitude);
 }
 
@@ -121,4 +121,12 @@ function startLoopN(t) {
     }
     //start loop
     refreshIntervalId = setInterval(function(){drawLoopImg()}, 1000);
+}
+$( "#slider" ).slider( "option", "max", 10 );
+function sliderChange() {
+    //alert("GGGGG");
+    var value = $( "#slider" ).slider( "values", 0 );
+    //alert(value);
+    alpha = value/10;
+    drawImg();
 }
