@@ -31,17 +31,16 @@ for (var key in MOS2_1024N) {
 navigator.geolocation.getCurrentPosition(GetLocation);
 
 function GetLocation(location) {
-    alert(location.coords.longitude);
-    alert(location.coords.latitude);
-    alert(location.coords.accuracy);
+    //alert(location.coords.longitude);
+    //alert(location.coords.latitude);
+    //alert(location.coords.accuracy);
     
     //(x-min)/(max-min)=(xImg-minImg)/(maxImg-minImg)
 	latitude = canvasSize-(location.coords.latitude-23.474)/(25.47-23.474)*canvasSize;
 	longitude = (location.coords.longitude-120)/(121.998-120)*canvasSize;
 	//alert("GetLocation  "+latitude);
 	
-	//ctx.globalAlpha = 0.7;
-	ctx.drawImage(gpsImg, longitude, latitude);
+	drawImg();
 }
 
 function loadImage(src, onload) {
