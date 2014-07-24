@@ -5,6 +5,8 @@ var gpsImg = loadImage('up_arrow.png', main);
 var longitude = -16;
 var latitude = 0;
 
+var canvasGps = document.getElementById("canvasGps");
+var ctxGps = canvasGps.getContext("2d");
 
 var canvas = document.getElementById("canvas");
 canvasSize = 476;
@@ -40,7 +42,8 @@ function GetLocation(location) {
 	longitude = (location.coords.longitude-120)/(121.998-120)*canvasSize+longitude;
 	latitude = canvasSize-(location.coords.latitude-23.474)/(25.47-23.474)*canvasSize+latitude;
 	//alert("GetLocation  "+latitude);
-	
+	ctxGps.clearRect(0,0,canvasSize,canvasSize);
+	ctxGps.drawImage(gpsImg, longitude, latitude);
 	drawImg();
 }
 
@@ -58,6 +61,7 @@ function main() {
     //do nothing
     document.getElementById("sel").selectedIndex = 0;
     selchange();
+    ctxGps.drawImage(gpsImg, -16, 0);
 }
 
 //select change listener
@@ -75,8 +79,8 @@ function drawImg() {
     ctx.clearRect(0,0,canvasSize,canvasSize);
     ctx.globalAlpha = alpha;
     ctx.drawImage(weatherImg, 0, 0);
-    ctx.globalAlpha = 1.0;
-    ctx.drawImage(gpsImg, longitude, latitude);
+    //ctx.globalAlpha = 1.0;
+    //ctx.drawImage(gpsImg, longitude, latitude);
 }
 
 function drawLoopImg() {

@@ -12,8 +12,28 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="jquery.selectboxes.js"></script>
     <body>
-        <canvas class="col-md-6" width="476" height="476" id="canvas"></canvas>
-        <div class="col-md-6">
+    <div class="col-md-6" style="position:relative;">
+        <canvas
+            id="canvasGps"
+            style="z-index: 3;
+            position:absolute;
+            left:0px;
+            top:0px;
+            " height="476" width="476">
+        </canvas>
+        <!--just need this dummy canvas to fix position:absolute; with col-md-X bug -->
+        <canvas
+            style="z-index: 2;
+            left:0px;
+            top:0px;
+            " height="476" width="476"></canvas>
+        <canvas  width="476" height="476" id="canvas"
+            style="z-index: 1;
+            position:absolute;
+            left:0px;
+            top:0px;" ></canvas>
+    </div>
+        <div class="col-md-6" style="position:relative;">
             <select multiple size=30 id="sel" class="form-control" onchange="selchange();"></select>
             <button class="btn btn-primary" onclick="startLoop()">Start Loop</button>
             <button class="btn btn-default" onclick="startLoopN(2)">2 Hour</button>
