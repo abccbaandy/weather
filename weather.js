@@ -1,9 +1,10 @@
 var weatherImg;
-var gpsImg = loadImage('circle16.png', main);
+var gpsImg = loadImage('up_arrow.png', main);
 
 //dummy geo data
-var latitude = 23;
-var longitude = 200;
+var longitude = -16;
+var latitude = 0;
+
 
 var canvas = document.getElementById("canvas");
 canvasSize = 476;
@@ -36,8 +37,8 @@ function GetLocation(location) {
     //alert(location.coords.accuracy);
     
     //(x-min)/(max-min)=(xImg-minImg)/(maxImg-minImg)
-	latitude = canvasSize-(location.coords.latitude-23.474)/(25.47-23.474)*canvasSize;
-	longitude = (location.coords.longitude-120)/(121.998-120)*canvasSize;
+	longitude = (location.coords.longitude-120)/(121.998-120)*canvasSize+longitude;
+	latitude = canvasSize-(location.coords.latitude-23.474)/(25.47-23.474)*canvasSize+latitude;
 	//alert("GetLocation  "+latitude);
 	
 	drawImg();
