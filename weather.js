@@ -9,7 +9,7 @@ var canvasGps = document.getElementById("canvasGps");
 var ctxGps = canvasGps.getContext("2d");
 
 var canvas = document.getElementById("canvas");
-canvasSize = 476;
+canvasSize = 500;
 var ctx = canvas.getContext("2d");
 ctx.width  = canvasSize;
 ctx.height = canvasSize;
@@ -39,8 +39,8 @@ function GetLocation(location) {
     //alert(location.coords.accuracy);
     
     //(x-min)/(max-min)=(xImg-minImg)/(maxImg-minImg)
-	longitude = (location.coords.longitude-120)/(121.998-120)*canvasSize+longitude;
-	latitude = canvasSize-(location.coords.latitude-23.474)/(25.47-23.474)*canvasSize+latitude;
+	longitude = (location.coords.longitude-120)/(121.998-120)*(canvasSize-1)+longitude;
+	latitude = canvasSize-(location.coords.latitude-23.474)/(25.47-23.474)*(canvasSize-1)+latitude;
 	//alert("GetLocation  "+latitude);
 	ctxGps.clearRect(0,0,canvasSize,canvasSize);
 	ctxGps.drawImage(gpsImg, longitude, latitude);
