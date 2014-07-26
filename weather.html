@@ -20,7 +20,7 @@
             position:absolute;
             left:0px;
             top:0px;
-            " height="500" width="500">
+            " height="1000" width="500">
         </canvas>
         <!--just need this dummy canvas to fix position:absolute; with col-md-X bug -->
         <canvas
@@ -34,7 +34,7 @@
             left:0px;
             top:0px;" ></canvas>
         <canvas width="500" height="500" id="canvasS"
-            style="z-index: 1;
+            style="z-index: 2;
             position:absolute;
             left:0;
             top:500px;" ></canvas>    
@@ -45,6 +45,7 @@
             <button class="btn btn-default" onclick="startLoopN(2)">2 Hour</button>
             <button class="btn btn-default" onclick="startLoopN(3)">3 Hour</button>
             <button class="btn btn-default" onclick="startLoopN(4)">4 Hour</button>
+            <br>
             <div id="slider"></div>
         </div>
         <script type="text/JavaScript">$( "#slider" ).slider({change: function( event, ui ) {sliderChange()}});</script>

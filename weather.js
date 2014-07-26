@@ -63,8 +63,14 @@ function GetLocation(location) {
     //alert(location.coords.accuracy);
     
     //(x-min)/(max-min)=(xImg-minImg)/(maxImg-minImg)
-	longitude = (location.coords.longitude-120)/(121.998-120)*(canvasSize-1)+longitude+1;
-	latitude = canvasSize-(location.coords.latitude-23.474)/(25.47-23.474)*(canvasSize-1)+latitude+1;
+    //Img 1~500
+    //http://opendata.cwb.gov.tw/observe/dataset/A0011-002.htm
+    //http://opendata.cwb.gov.tw/observe/dataset/A0011-003.htm
+    //longitude 120.0 - 121.998
+    //latitude 23.474 - 25.47 & 21.874 - 23.87 = 21.874 - 25.47
+    //two image(N&S) overlay (23.87-23.474)/(25.47-23.474)*500=99.198
+	longitude = (location.coords.longitude-120.0)/(121.998-120.0)*(500-1)+1+longitude;
+	latitude = 500+401-(location.coords.latitude-21.874)/(25.47-21.874)*(500+401-1)+1+latitude;
 	//alert("GetLocation  "+latitude);
 	ctxGps.clearRect(0,0,canvasSize,canvasSize);
 	ctxGps.drawImage(gpsImg, longitude, latitude);
@@ -115,7 +121,7 @@ function drawImgS() {
     //good way to clear
     ctxS.clearRect(0,0,canvasSize,canvasSize);
     ctxS.globalAlpha = alpha;
-    ctxS.drawImage(weatherImgS, 0, 0);
+    ctxS.drawImage(weatherImgS, 0, -99);
     //ctx.globalAlpha = 1.0;
     //ctx.drawImage(gpsImg, longitude, latitude);
 }
@@ -166,6 +172,9 @@ function startLoopN(t) {
     refreshIntervalId = setInterval(function(){drawLoopImg()}, 1000);
 }
 $( "#slider" ).slider( "option", "max", 10 );
+$( "#slider" ).slider( "option","value", 10);
+$( "#slider" ).slider( "option", "animate", "fast" );
+
 function sliderChange() {
     //alert("GGGGG");
     var value = $( "#slider" ).slider( "values", 0 );
