@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
     <script type="text/JavaScript" src="http://www.cwb.gov.tw/V7/js/MOS2_1024N.js"></script>
+    <script type="text/JavaScript" src="http://www.cwb.gov.tw/V7/js/MOS2_1024S.js"></script>
     <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
     <!-- Latest compiled and minified JavaScript -->
@@ -24,14 +25,19 @@
         <!--just need this dummy canvas to fix position:absolute; with col-md-X bug -->
         <canvas
             style="z-index: 2;
-            left:0px;
-            top:0px;
-            " height="500" width="500"></canvas>
-        <canvas  width="500" height="500" id="canvas"
+            left:0;
+            top:0;
+            " height="1000" width="500"></canvas>
+        <canvas  width="500" height="500" id="canvasN"
             style="z-index: 1;
             position:absolute;
             left:0px;
             top:0px;" ></canvas>
+        <canvas width="500" height="500" id="canvasS"
+            style="z-index: 1;
+            position:absolute;
+            left:0;
+            top:500px;" ></canvas>    
     </div>
         <div class="col-md-6" style="position:relative;">
             <select multiple size=30 id="sel" class="form-control" onchange="selchange();"></select>

@@ -1,4 +1,17 @@
-var weatherImg;
+/*var canvasTest = document.getElementById("canvasS");
+var ctxTest = canvasTest.getContext("2d");
+
+var tttImg;
+
+function tttt() {
+    ctxTest.drawImage(tttImg, 0, 0);
+}
+
+tttImg = loadImage("http://www.cwb.gov.tw/V7/observe/radar/Data/MOS2_1024S/2014-07-26_1454.2MOS3SC.jpg", tttt);*/
+
+
+var weatherImgN;
+var weatherImgS;
 var gpsImg = loadImage('up_arrow.png', main);
 
 //dummy geo data
@@ -8,13 +21,19 @@ var latitude = 0;
 var canvasGps = document.getElementById("canvasGps");
 var ctxGps = canvasGps.getContext("2d");
 
-var canvas = document.getElementById("canvas");
+var canvasN = document.getElementById("canvasN");
 canvasSize = 500;
-var ctx = canvas.getContext("2d");
-ctx.width  = canvasSize;
-ctx.height = canvasSize;
+var ctxN = canvasN.getContext("2d");
+ctxN.width  = canvasSize;
+ctxN.height = canvasSize;
 
-var cwb_path = [];
+var canvasS = document.getElementById("canvasS");
+var ctxS = canvasS.getContext("2d");
+ctxS.width  = canvasSize;
+ctxS.height = canvasSize;
+
+var cwb_pathN = [];
+var cwb_pathS = [];
 //not use anymore
 var cwb_name = [];
 
@@ -27,11 +46,16 @@ var selectedImg;
 $("#sel").addOption(MOS2_1024N, false);
 
 for (var key in MOS2_1024N) {
-    cwb_path.push(key);
-    cwb_name.push(MOS2_1024N[key]);
+    cwb_pathN.push(key);
+    //cwb_name.push(MOS2_1024N[key]);
 }
 
-navigator.geolocation.getCurrentPosition(GetLocation);
+for (var key in MOS2_1024S) {
+    cwb_pathS.push(key);
+    //cwb_name.push(MOS2_1024N[key]);
+}
+
+
 
 function GetLocation(location) {
     //alert(location.coords.longitude);
@@ -39,12 +63,13 @@ function GetLocation(location) {
     //alert(location.coords.accuracy);
     
     //(x-min)/(max-min)=(xImg-minImg)/(maxImg-minImg)
-	longitude = (location.coords.longitude-120)/(121.998-120)*(canvasSize-1)+longitude;
-	latitude = canvasSize-(location.coords.latitude-23.474)/(25.47-23.474)*(canvasSize-1)+latitude;
+	longitude = (location.coords.longitude-120)/(121.998-120)*(canvasSize-1)+longitude+1;
+	latitude = canvasSize-(location.coords.latitude-23.474)/(25.47-23.474)*(canvasSize-1)+latitude+1;
 	//alert("GetLocation  "+latitude);
 	ctxGps.clearRect(0,0,canvasSize,canvasSize);
 	ctxGps.drawImage(gpsImg, longitude, latitude);
-	drawImg();
+	drawImgN();
+	drawImgS();
 }
 
 function loadImage(src, onload) {
@@ -62,6 +87,7 @@ function main() {
     document.getElementById("sel").selectedIndex = 0;
     selchange();
     ctxGps.drawImage(gpsImg, -16, 0);
+    navigator.geolocation.getCurrentPosition(GetLocation);
 }
 
 //select change listener
@@ -69,23 +95,35 @@ function selchange() {
     //stop current loop
     clearInterval(refreshIntervalId);
     //alert(document.getElementById("sel").selectedIndex);
-    weatherImg = loadImage('http://www.cwb.gov.tw'+cwb_path[document.getElementById("sel").selectedIndex], drawImg);
+    weatherImgN = loadImage('http://www.cwb.gov.tw'+cwb_pathN[document.getElementById("sel").selectedIndex], drawImgN);
+    weatherImgS = loadImage('http://www.cwb.gov.tw'+cwb_pathS[document.getElementById("sel").selectedIndex], drawImgS);
 }
 var alpha = 1.0;
-function drawImg() {
+function drawImgN() {
     //dirty way to clear
     //canvas.width = canvas.width;
     //good way to clear
-    ctx.clearRect(0,0,canvasSize,canvasSize);
-    ctx.globalAlpha = alpha;
-    ctx.drawImage(weatherImg, 0, 0);
+    ctxN.clearRect(0,0,canvasSize,canvasSize);
+    ctxN.globalAlpha = alpha;
+    ctxN.drawImage(weatherImgN, 0, 0);
+    //ctx.globalAlpha = 1.0;
+    //ctx.drawImage(gpsImg, longitude, latitude);
+}
+function drawImgS() {
+    //dirty way to clear
+    //canvas.width = canvas.width;
+    //good way to clear
+    ctxS.clearRect(0,0,canvasSize,canvasSize);
+    ctxS.globalAlpha = alpha;
+    ctxS.drawImage(weatherImgS, 0, 0);
     //ctx.globalAlpha = 1.0;
     //ctx.drawImage(gpsImg, longitude, latitude);
 }
 
 function drawLoopImg() {
     // composite now
-    weatherImg = loadImage('http://www.cwb.gov.tw'+cwb_path[selectedImg[selectedImg.length-1-selectedImgIndex]], drawImg);
+    weatherImgN = loadImage('http://www.cwb.gov.tw'+cwb_pathN[selectedImg[selectedImg.length-1-selectedImgIndex]], drawImgN);
+    weatherImgS = loadImage('http://www.cwb.gov.tw'+cwb_pathS[selectedImg[selectedImg.length-1-selectedImgIndex]], drawImgS);
     
     if(selectedImgIndex==selectedImg.length-1)
         selectedImgIndex = 0;
@@ -133,5 +171,6 @@ function sliderChange() {
     var value = $( "#slider" ).slider( "values", 0 );
     //alert(value);
     alpha = value/10;
-    drawImg();
+    drawImgN();
+    drawImgS();
 }
