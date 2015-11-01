@@ -43,14 +43,14 @@ var selectedImgIndex = 0;
 
 var selectedImg;
 
-$("#sel").addOption(MOS2_1024N, false);
+$("#sel").addOption(MOS_1024N, false);
 
-for (var key in MOS2_1024N) {
+for (var key in MOS_1024N) {
     cwb_pathN.push(key);
     //cwb_name.push(MOS2_1024N[key]);
 }
 
-for (var key in MOS2_1024S) {
+for (var key in MOS_1024S) {
     cwb_pathS.push(key);
     //cwb_name.push(MOS2_1024N[key]);
 }
